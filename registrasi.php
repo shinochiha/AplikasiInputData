@@ -52,16 +52,29 @@ if(isset($_POST['register'])) {
 		<form action="" method="post">
 		  <div class="form-group">	
 			<label for="1"><b>Username</b></label>
-				<input class="form-control" type="text" name="username" id="1" required autofocus autocomplete="off">
-				<br>
+				<input class="form-control" type="text" name="username" id="1" required autofocus autocomplete="off" placeholder="Username">
+				<small id="emailHelp" class="form-text text-muted text-success">Minimal 6 karakter, tidak menerima selain angka dan huruf</small>
+			</div>
+
+			<div class="form-group">
 			<label for="2"><b>Password</b></label>
-				<input class="form-control" type="password" name="password" id="2" required autocomplete="off">
-				<br>
+				<input class="form-control" type="password" name="password" id="2" required autocomplete="off" placeholder="Password">
+				<small id="emailHelp" class="form-text text-muted text-success">Minimal 6 karakter</small>
+
+			</div>
+
+			<div class="form-group">
 			<label for="3"><b>Confirm Password</b></label>
-				<input class="form-control" type="password" name="password2" id="3" required autocomplete="off">
-				<br>
-			<button class="btn btn-primary" type="submit" name="register">Register</button>
-			<p class="float-right"><i>Sudah punya akun, Login</i> <a href="login.php"><b>disini</b></a></p>
+				<input class="form-control" type="password" name="password2" id="3" required autocomplete="off" placeholder="Confirm Password">
+				<small id="emailHelp" class="form-text text-muted text-success">Pastikan sama seperti di atas</small>
+
+			</div>
+
+			<div class="btn-group">
+				<button class="btn btn-primary" type="submit" name="register">Register</button>
+			</div>
+			<!-- <p class="float-right"><i>Sudah punya akun, Login</i> <a href="login.php"><b>disini</b></a></p> -->
+			<small id="1" class="form-text text-muted float-right">Sudah memiliki akun, Login <a href="login.php"><i>disini</i></a></small>
 		  </div>
 		</form>
 		

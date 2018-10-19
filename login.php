@@ -2,6 +2,29 @@
 
 session_start();
 
+require 'function.php';
+
+// cek cookie
+if(isset($_COOKIE['id']) && isset($_COOKIE['key']) ) {
+	$id = $_COOKIE['id'];
+	$key = $_COOKIE['key'];
+
+	// ambil username berdasarkan id
+
+	$result = mysqli_query($connect, "SELECT username FROM users WHERE id =$id");
+	$row = mysqli_fetch_assoc($result);
+
+	// cek cookie dan usernmae
+	if ( $key === hash('sha256', $row['username']) ) {
+
+		$_SESSION['login'] = true ;
+	}
+
+
+}
+
+
+
 if( isset($_SESSION["login"])) {
   // header('Location:read.php');
 	echo "<script>
@@ -12,7 +35,7 @@ if( isset($_SESSION["login"])) {
 }
 
 
-require 'function.php';
+
 
 
 
@@ -31,6 +54,14 @@ if(isset($_POST['login'])) {
 		if (password_verify($password, $row['password']) ) {
 			// set session
 			$_SESSION["login"] = true;
+
+			// cek remember me
+			if (isset($_POST['remember'])) {
+				// buat cookie
+
+				setcookie('id', $row['id'], time() + 60);
+				setcookie('key', hash('sha256', $row['username']), time() + 60);
+			}
 
 			header('Location: read.php');
 			exit;
@@ -67,21 +98,33 @@ if(isset($_POST['login'])) {
 	<div class="container">
 		<br>
 		<h1 class="bg-secondary text-light text-center shadow rounded">Login</h1>
-
+		<hr>
 		<?php if(isset($error)) : ?>
-			<p class="text-danger">Username/Password Salah</p>
+			<p class="text-danger alert alert-danger">Username/Password Salah</p>
 		<?php endif; ?>	
 
 			<form action="" method="post">
-				<label for="1">Username</label>
-				<input class="form-control" type="text" name="username" id="1" required>
-				<br>
-				<label for="2">Password</label>
-				<input class="form-control" type="password" name="password" id="2" required>
-				<br>
+				<div class="form-group">
+				<label for="1"><b>Username</b></label>
+				<input class="form-control" type="text" name="username" id="1" placeholder="Enter username" required autofocus>
+				<small id="1" class="form-text text-success">Pastikan kamu sudah memiliki akun</small>
+			</div>
 
-				<button class="btn btn-success shadow" type="submit" name="login">Login</button>
-				<p class="float-right"><i>Belum punya akun register</i> <a href="registrasi.php"><b>disini</b></a></p>
+			<div class="form-group">
+				<label for="2"><b>Password</b></label>
+				<input class="form-control" type="password" name="password" id="2" required placeholder="Password" >
+			</div>
+
+			<div class="form-group form-check">
+		  		  <input type="checkbox" class="form-check-input " id="exampleCheck1" name="remember">
+		    		<label class="form-check-label" for="exampleCheck1"><small class="text-muted">Remember me</small></label>
+		    		<small id="1" class="form-text text-muted float-right"><a href="#">Lupa Password</a></small>
+		  	</div>
+
+				<button class="btn btn-primary shadow" type="submit" name="login">Login</button>
+				<!-- <p class="float-right"><i>Belum punya akun register</i> <a href="registrasi.php"><b>disini</b></a></p> -->
+				<small id="1" class="form-text text-muted float-right">Belum memiliki akun, Register <a href="registrasi.php"><i>disini</i></a></small>
+
 				
 			</form>
 	</div>
