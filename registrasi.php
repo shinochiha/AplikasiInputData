@@ -1,4 +1,11 @@
 <?php 
+// session_start();
+
+// if( !isset($_SESSION["login"])) {
+//   header('Location:login.php');
+//   exit;
+// }
+
 require 'function.php';
 
 
@@ -22,9 +29,20 @@ if(isset($_POST['register'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" href="img/register.png">
 	<title>Registrasi</title>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow ">
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link rounded shadow bg-warning text-light" href="index.php">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      </ul>
+
+	  </div>
+	</nav>
 
 	<div class="container">
 		<br>

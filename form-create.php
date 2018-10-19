@@ -1,3 +1,15 @@
+<?php 
+session_start();
+
+if( !isset($_SESSION["login"])) {
+  header('Location:login.php');
+  exit;
+}
+
+include('function.php');
+
+ ?>
+
 <html>
 <head>
 	<meta charset="UTF-8">

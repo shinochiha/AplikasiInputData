@@ -1,3 +1,4 @@
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -14,10 +15,6 @@
           <ul class="navbar-nav">
               <li class="nav-item active">
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-          </ul>
-          <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="read.php">Daftar Santri</a>
           </ul>
           <ul class="navbar-nav">
               <li class="nav-item">

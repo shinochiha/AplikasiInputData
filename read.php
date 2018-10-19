@@ -1,7 +1,19 @@
 <?php 
+
+session_start();
+
+if( !isset($_SESSION["login"])) {
+	// header('Location:login.php');
+	echo "<script>
+			alert('Silahkan Login terlebih dahulu'); 
+			document.location='login.php';	
+		</script>";
+	exit;
+}
+
 include('function.php');
 
-$query = mysqli_query($connect, "SELECT * FROM santri ORDER BY id DESC LIMIT 0, 10 ");
+$query = mysqli_query($connect, "SELECT * FROM santri ORDER BY id DESC ");
 $data = mysqli_fetch_all($query, MYSQLI_ASSOC);
 $jumlah = mysqli_num_rows($query);
 
@@ -18,22 +30,22 @@ $jumlah = mysqli_num_rows($query);
  	<title>Daftar Santri</title>
  </head>
  <body>
- 	<nav class="navbar navbar-expand-lg navbar-light bg-light rounded shadow">
-		  	<div class="collapse navbar-collapse" id="navbarText">
-		    	<ul class="navbar-nav mr-auto">
-		      		<li class="nav-item shadow">
-		        		<a class="nav-link btn btn-warning text-light" href="index.php">Home</a>
-		      		</li>
-		  		</ul>
-		  	</div>
-		  	<div style='margin-left:1730px;' class="collapse navbar-collapse" id="navbarText">
-		  		<ul class="navbar-nav mr-auto">
-		  			<li class="nav-item shadow">
-		  				<a href="#" class="nav-link text-light btn btn-info">Logout</a>
-		  			</li>
-		  		</ul>
-		  	</div>
-		</nav>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow ">
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	      <!--   <a class="nav-link rounded shadow bg-warning text-light" href="index.php">Home <span class="sr-only">(current)</span></a> -->
+	      </li>
+	      </ul>
+
+	      <a class="nav-link rounded shadow mr-sm-2 bg-primary text-light" href="logout.php" onclick="return confirm('Apakah anda yakin ingin keluar?');">Logout</a>
+	  </div>
+	</nav>
+
+
+
+
 		<br>
  	<!-- <div class="container"> -->
  	<div class="container">	

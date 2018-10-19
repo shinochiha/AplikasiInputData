@@ -1,4 +1,12 @@
 <?php 
+
+session_start();
+
+if( !isset($_SESSION["login"])) {
+  header('Location:login.php');
+  exit;
+}
+
 include('function.php');
 $keyword = $_GET['keyword'];
 $query = mysqli_query($connect, "SELECT * FROM santri WHERE nama LIKE'%$keyword%' OR email='$keyword' ");
@@ -17,22 +25,17 @@ $data = mysqli_fetch_all($query, MYSQLI_ASSOC);
  	<title>Daftar Santri</title>
  </head>
  <body>
- 	<nav class="navbar navbar-expand-lg navbar-light bg-light rounded shadow">
-		  	<div class="collapse navbar-collapse" id="navbarText">
-		    	<ul class="navbar-nav mr-auto">
-		      		<li class="nav-item shadow">
-		        		<a class="nav-link btn btn-warning text-light" href="index.php">Home</a>
-		      		</li>
-		  		</ul>
-		  	</div>
-		  	<div style='margin-left:1730px;' class="collapse navbar-collapse" id="navbarText">
-		  		<ul class="navbar-nav mr-auto">
-		  			<li class="nav-item shadow">
-		  				<a href="#" class="nav-link text-light btn btn-info">Logout</a>
-		  			</li>
-		  		</ul>
-		  	</div>
-		</nav>
+ 	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow ">
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <!-- <a class="nav-link rounded shadow bg-warning text-light" href="index.php">Home <span class="sr-only">(current)</span></a> -->
+	      </li>
+	      </ul>
+
+	      <a class="nav-link rounded shadow mr-sm-2 bg-primary text-light" href="#">Logout</a>
+	  </div>
+	</nav>
  	<!-- <div class="container"> -->
  	<div class="container">	
  		<br>
