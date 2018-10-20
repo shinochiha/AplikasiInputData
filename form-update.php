@@ -28,7 +28,7 @@ $db = mysqli_fetch_all($query, MYSQLI_ASSOC);
 <body>
 	<div class="container">
 		<br>
-		<h1 class="bg-secondary text-light text-center shadow rounded">Edit Data</h1>
+		<h1 class="bg-info text-light text-center shadow rounded"><a class="nav-link text-light" href="">Update Data</a></h1>
 		<hr>
 		<form action="update.php" method="post">
 			

@@ -97,10 +97,10 @@ if(isset($_POST['login'])) {
 	</nav>
 	<div class="container">
 		<br>
-		<h1 class="bg-secondary text-light text-center shadow rounded">Login</h1>
+		<h1 class="bg-info text-light text-center shadow rounded"><a class="nav-link text-light" href="login.php">Login</a></h1>
 		<hr>
 		<?php if(isset($error)) : ?>
-			<p class="text-danger alert alert-danger">Username/Password Salah</p>
+			<p class="text-danger alert alert-danger"><i>Username / Password Salah</i></p>
 		<?php endif; ?>	
 
 			<form action="" method="post">

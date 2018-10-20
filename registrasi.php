@@ -46,25 +46,25 @@ if(isset($_POST['register'])) {
 
 	<div class="container">
 		<br>
-		<h1 class="bg-secondary text-light text-center shadow rounded">Registrasi</h1>
+		<h1 class="bg-info text-light text-center shadow rounded"><a class="nav-link text-light" href="registrasi.php">Registrasi</a></h1>
 		<hr>
 		
 		<form action="" method="post">
 		  <div class="form-group">	
-			<label for="1"><b>Username</b></label>
+			<label for="1"><b>Username <small class="text-danger">*</small></b></label>
 				<input class="form-control" type="text" name="username" id="1" required autofocus autocomplete="off" placeholder="Username">
 				<small id="emailHelp" class="form-text text-muted text-success">Minimal 6 karakter, tidak menerima selain angka dan huruf</small>
 			</div>
 
 			<div class="form-group">
-			<label for="2"><b>Password</b></label>
+			<label for="2"><b>Password <small class="text-danger">*</small></b></label>
 				<input class="form-control" type="password" name="password" id="2" required autocomplete="off" placeholder="Password">
 				<small id="emailHelp" class="form-text text-muted text-success">Minimal 6 karakter</small>
 
 			</div>
 
 			<div class="form-group">
-			<label for="3"><b>Confirm Password</b></label>
+			<label for="3"><b>Confirm Password <small class="text-danger">*</small></b></label>
 				<input class="form-control" type="password" name="password2" id="3" required autocomplete="off" placeholder="Confirm Password">
 				<small id="emailHelp" class="form-text text-muted text-success">Pastikan sama seperti di atas</small>
 

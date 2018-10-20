@@ -39,8 +39,8 @@ $data = mysqli_fetch_all($query, MYSQLI_ASSOC);
  	<!-- <div class="container"> -->
  	<div class="container">	
  		<br>
- 		<h1 class="bg-secondary text-light text-center shadow rounded"><a class='text-light'  style="text-decoration: none;" href="read.php">Daftar Santri Pondok Programmer</a></h1><br>
- 			<center><a class="btn btn-info shadow" href="form-create.php">Tambah Data [+]</a></center><br>
+ 		<h1 class="bg-info text-light text-center shadow rounded"><a class='text-light nav-link' href="read.php">Daftar Santri Pondok Programmer</a></h1><br>
+ 			<center><a class="btn btn-outline-primary shadow" href="form-create.php">Tambah Data [+]</a></center><br>
  				
 			<form method="get" action="search.php" class="form-inline">
     			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="<?= $_GET['keyword']; ?>" required>
@@ -83,12 +83,9 @@ $data = mysqli_fetch_all($query, MYSQLI_ASSOC);
 				      <a class="page-link" href="#" tabindex="-1">Previous</a>
 				    </li>
 
-				    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item ">
-				      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+				    <li class="page-item active">
+				    	<a class="page-link" href="#">1</a>
 				    </li>
-
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
 				    <li class="page-item">
 				      <a class="page-link" href="#">Next</a>
 				    </li>

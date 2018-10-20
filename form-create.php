@@ -22,7 +22,7 @@ include('function.php');
 <body>
 	<div class="container">
 		<br>
-		<h1 class="bg-secondary text-light text-center shadow rounded">Tambah Data</h1>
+		<h1 class="bg-info text-light text-center shadow rounded"><a class="nav-link text-light" href="">Tambah Data</a></h1>
 		<hr>
 		<form action="create.php" method="post">
 			<label for="1"><b>Nama</b></label>
@@ -35,7 +35,7 @@ include('function.php');
 			<input class="form-control" type="number" name="no_hp" id="3" required autocomplete="off">
 			<br>
 			<label for="4"><b>Tanggal Lahir</b></label>
-			<input class="form-control" type="date" value="<?php echo date("d-m-Y");?>" name="tanggal_lahir" id="4" required autocomplete="off">
+			<input class="form-control" type="date"  name="tanggal_lahir" id="4" required autocomplete="off">
 			<br>
 			<label for="5"><b>Kota/Kab</b></label>
 

@@ -13,7 +13,29 @@ if( !isset($_SESSION["login"])) {
 
 include('function.php');
 
-$query = mysqli_query($connect, "SELECT * FROM santri ORDER BY id DESC ");
+// pagination
+// konfigurasi
+ $jumlahDataPerhalaman = 4;
+ $result = mysqli_query($connect, "SELECT * FROM santri");
+ $jumlahData = mysqli_num_rows($result);
+ $jumlahHalaman = ceil($jumlahData) / $jumlahDataPerhalaman;
+ 
+ 
+// ternary operator
+
+ $halamanAktif = ( isset($_GET['halaman']) ) ? $_GET['halaman'] : 1;
+ $awalData = ( $jumlahDataPerhalaman * $halamanAktif ) - $jumlahDataPerhalaman;
+
+//  if (isset($_GET['halaman']) ) {
+//  	$halamanAktif = $_GET['halaman'];
+
+// } else {
+// 	$halamanAktif = 1;
+// }
+
+
+
+$query = mysqli_query($connect, "SELECT * FROM santri ORDER BY id DESC  LIMIT $awalData, $jumlahDataPerhalaman");
 $data = mysqli_fetch_all($query, MYSQLI_ASSOC);
 $jumlah = mysqli_num_rows($query);
 
@@ -49,8 +71,8 @@ $jumlah = mysqli_num_rows($query);
  	<!-- <div class="container"> -->
  	<div class="container">	
  		
- 		<h1 class="bg-secondary text-center shadow rounded"><a class='text-light' style="text-decoration: none;" href="read.php">Daftar Santri Pondok Programmer</a></h1><br>
- 			<center><a class="btn btn-info shadow" href="form-create.php">Tambah Data [+]</a></center><br>
+ 		<h1 class="bg-info text-center shadow rounded"><a class='text-light nav-link' href="read.php">Daftar Santri Pondok Programmer</a></h1><br>
+ 			<center><a class="btn btn-outline-info shadow" href="form-create.php">Tambah Data [+]</a></center><br>
  				
 			<form method="get" action="search.php" class="form-inline">
     			<input class="form-control mr-sm-2 shadow" type="search" placeholder="Search" aria-label="Search" name="keyword" autofocus autocomplete="off" required>
@@ -88,24 +110,41 @@ $jumlah = mysqli_num_rows($query);
 	 			</table>
 	 			<hr>
 	 			<h6><b><i>Jumlah Santri</i></b> : <?= $jumlah ?> </h6>
-	 			<nav aria-label="...">
-				  <ul class="pagination shadow">
-				    <li class="page-item">
-				      <a class="page-link" href="#" tabindex="-1">Previous</a>
-				    </li>
 
-				    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item ">
-				      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-				    </li>
+		<!-- navigasi -->
 
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item">
-				      <a class="page-link" href="#">Next</a>
-				    </li>
-				  </ul>
-				</nav>
-	 			<hr>
+			<nav aria-label="">
+				<ul class="pagination shadow">
+					<li class="page-item">
+				<?php if($halamanAktif > 1) : ?>
+				 	<a class="page-link" href="?halaman=<?= $halamanAktif - 1; ?>">Previous</a>
+				<?php endif; ?>
+				 	</li>
+
+	 			<?php for( $i = 1; $i <= $jumlahHalaman; $i++ ) : ?>
+
+					<li class="page-item">	
+
+
+	 			  	<?php if( $i == $halamanAktif ) : ?>	 
+						<a class="page-link  bg-primary text-light" href="?halaman=<?= $i; ?>" class='text-danger'><?= $i; ?></a>
+				  	<?php else : ?>
+				  		<a class="page-link" href="?halaman=<?= $i; ?>"><?= $i; ?></a>
+				  	<?php endif; ?>
+
+	 				</li>
+	 			<?php endfor; ?>
+
+				
+				<li class="page-item">
+	 			<?php if($halamanAktif < $jumlahHalaman) : ?>
+				 	<a class="page-link" href="?halaman=<?= $halamanAktif + 1; ?>">Next</a>
+				 <?php endif; ?>
+				</li>	
+				 </ul>
+
+			</nav>
+	
  	</div>
  	
  </body>
